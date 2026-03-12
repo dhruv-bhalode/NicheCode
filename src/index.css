@@ -1,0 +1,75 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: 240 10% 3.9%;
+  --foreground: 0 0% 98%;
+  --primary: 262 83.3% 57.8%;
+  /* Violet/Purple */
+  --primary-foreground: 210 40% 98%;
+  --secondary: 240 3.7% 15.9%;
+  --secondary-foreground: 0 0% 98%;
+  --accent: 262 83.3% 57.8%;
+  --accent-foreground: 210 40% 98%;
+
+  /* Dynamic Theme Variables - Default Violet */
+  --theme-300: 196 181 253;
+  --theme-400: 167 139 250;
+  --theme-500: 139 92 246;
+  --theme-600: 124 58 237;
+  --theme-700: 109 40 217;
+  --theme-900: 76 29 149;
+}
+
+@layer base {
+  body {
+    @apply bg-zinc-950 text-zinc-50 transition-colors duration-500;
+    font-family: 'Inter', sans-serif;
+  }
+
+  /* Light Theme Overrides */
+  html:not(.dark) body {
+    @apply bg-zinc-50 text-zinc-900;
+  }
+}
+
+@layer components {
+  .glass-panel {
+    @apply bg-zinc-900/50 backdrop-blur-xl border border-white/10 shadow-2xl transition-all;
+  }
+
+  html:not(.dark) .glass-panel {
+    @apply bg-white/70 border-black/5 shadow-xl;
+  }
+
+  .glass-button {
+    @apply bg-white/5 hover:bg-white/10 border border-white/10 transition-all duration-300;
+  }
+
+  html:not(.dark) .glass-button {
+    @apply bg-zinc-900/5 hover:bg-zinc-900/10 border-black/5;
+  }
+}
+
+/* Force smooth, slow transitions globally during theme changes */
+.theme-transitioning *,
+.theme-transitioning ::before,
+.theme-transitioning ::after {
+  transition-property: background-color, border-color, color, fill, stroke, box-shadow, text-decoration-color !important;
+  transition-duration: 2.5s !important;
+  transition-timing-function: ease-in-out !important;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-zinc-900;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-zinc-700 rounded-full hover:bg-zinc-600;
+}

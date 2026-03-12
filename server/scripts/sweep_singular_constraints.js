@@ -1,0 +1,70 @@
+
+import mongoose from 'mongoose';
+import dotenv from 'dotenv';
+import path from 'path';
+import { fileURLToPath } from 'url';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+dotenv.config({ path: path.join(__dirname, '../.env') });
+
+const MONGO_URI = process.env.MONGO_URI;
+
+const problemSchema = new mongoose.Schema({
+    id: String,
+    title: String,
+    description: String,
+    constraints: Array
+}, { collection: 'display-problems', strict: false });
+
+const Problem = mongoose.model('Problem', problemSchema);
+
+async function run() {
+    try {
+        await mongoose.connect(MONGO_URI);
+        const missing = await Problem.find({
+            $or: [
+                { constraints: { $exists: false } },
+                { constraints: { $size: 0 } }
+            ]
+        });
+
+        console.log(`Checking ${missing.length} missing problems for singular "Constraint:" header.`);
+
+        let updatedCount = 0;
+
+        for (const p of missing) {
+            const desc = p.description;
+            const match = desc.match(/Constraint:([\s\S]*?)(?=Follow-up:|Example |Note:|$)/i);
+
+            if (!match || !match[1]) continue;
+
+            const constraintsRaw = match[1].trim();
+            if (!constraintsRaw) continue;
+
+            const cleanedConstraints = constraintsRaw
+                .split(/\r?\n/)
+                .map(line => {
+                    let cleaned = line.replace(/<[^>]*>/g, '').trim();
+                    cleaned = cleaned.replace(/^[ \t]*(?:\d+[\.\)\-]|[•\-\*])(?:\s+|$)/, '').trim();
+                    return cleaned;
+                })
+                .filter(line => line.length > 0);
+
+            if (cleanedConstraints.length > 0) {
+                p.constraints = cleanedConstraints;
+                await p.save();
+                updatedCount++;
+            }
+        }
+
+        console.log(`Sweep finished. Additional updated: ${updatedCount}`);
+
+    } catch (err) {
+        console.error(err);
+    } finally {
+        await mongoose.disconnect();
+    }
+}
+
+run();

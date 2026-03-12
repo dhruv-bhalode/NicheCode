@@ -1,0 +1,1045 @@
+[
+  {
+    "context": "A hash table is a data structure that maps keys to values for highly efficient lookup. There are a number of ways of implementing this. In this simple implementation, we use an array of linked lists and a hash code function. To insert a key and value, we first compute the key's hash code, which will usually be an int or long. Note that two different keys could have the same hash code, as there may be an infinite number of keys and a finite number of ints.",
+    "qas": [
+      {
+        "id": "00001",
+        "is_impossible": false,
+        "question": "What data structure does a hash table map?",
+        "answers": [
+          {
+            "text": "keys to values",
+            "answer_start": 40
+          }
+        ]
+      },
+      {
+        "id": "00002",
+        "is_impossible": false,
+        "question": "What implementation uses array of linked lists?",
+        "answers": [
+          {
+            "text": "hash table",
+            "answer_start": 140
+          }
+        ]
+      },
+      {
+        "id": "00003",
+        "is_impossible": false,
+        "question": "What data types can hash codes be?",
+        "answers": [
+          {
+            "text": "int or long",
+            "answer_start": 280
+          }
+        ]
+      },
+      {
+        "id": "00004",
+        "is_impossible": false,
+        "question": "Can two different keys have the same hash code?",
+        "answers": [
+          {
+            "text": "yes",
+            "answer_start": 310
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "context": "Then, map the hash code to an index in the array. This could be done with something like hash(key) % array_length. Two different hash codes could, of course, map to the same index. At this index, there is a linked list of keys and values. Store the key and value in this index. We must use a linked list because of collisions: you could have two different keys with the same hash code, or two different hash codes that map to the same index.",
+    "qas": [
+      {
+        "id": "00005",
+        "is_impossible": false,
+        "question": "How do you map hash code to array index?",
+        "answers": [
+          {
+            "text": "hash(key) % array_length",
+            "answer_start": 85
+          }
+        ]
+      },
+      {
+        "id": "00006",
+        "is_impossible": false,
+        "question": "Why must we use a linked list at each index?",
+        "answers": [
+          {
+            "text": "because of collisions",
+            "answer_start": 295
+          }
+        ]
+      },
+      {
+        "id": "00007",
+        "is_impossible": false,
+        "question": "What causes collisions in hash tables?",
+        "answers": [
+          {
+            "text": "two different keys with the same hash code, or two different hash codes that map to the same index",
+            "answer_start": 330
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "context": "To retrieve the value pair by its key, you repeat this process. Compute the hash code from the key, and then compute the index from the hash code. Then, search through the linked list for the value with this key. If the number of collisions is very high, the worst case runtime is O(N), where N is the number of keys. However, we generally assume a good implementation that keeps collisions to a minimum, in which case the lookup time is O(1).",
+    "qas": [
+      {
+        "id": "00008",
+        "is_impossible": false,
+        "question": "What is the worst case runtime for hash table lookup?",
+        "answers": [
+          {
+            "text": "O(N)",
+            "answer_start": 255
+          }
+        ]
+      },
+      {
+        "id": "00009",
+        "is_impossible": false,
+        "question": "What does N represent in the worst case runtime?",
+        "answers": [
+          {
+            "text": "the number of keys",
+            "answer_start": 275
+          }
+        ]
+      },
+      {
+        "id": "00010",
+        "is_impossible": false,
+        "question": "What is the lookup time for a good hash table implementation?",
+        "answers": [
+          {
+            "text": "O(1)",
+            "answer_start": 420
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "context": "Alternatively, we can implement the hash table with a balanced binary search tree. This gives us an O(log N) lookup time. The advantage of this is potentially using less space, since we no longer allocate a large array. We can also iterate through the keys in order, which can be useful sometimes.",
+    "qas": [
+      {
+        "id": "00011",
+        "is_impossible": false,
+        "question": "What alternative implementation can be used for hash tables?",
+        "answers": [
+          {
+            "text": "balanced binary search tree",
+            "answer_start": 55
+          }
+        ]
+      },
+      {
+        "id": "00012",
+        "is_impossible": false,
+        "question": "What lookup time does balanced binary search tree provide?",
+        "answers": [
+          {
+            "text": "O(log N)",
+            "answer_start": 100
+          }
+        ]
+      },
+      {
+        "id": "00013",
+        "is_impossible": false,
+        "question": "What space advantage does BST implementation offer?",
+        "answers": [
+          {
+            "text": "using less space, since we no longer allocate a large array",
+            "answer_start": 160
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "context": "In some languages, arrays are automatically resizable. The array or list will grow as you append items. In other languages, like Java, arrays are fixed length. The size is defined when you create the array. When you need an array-like data structure that offers dynamic resizing, you would usually use an ArrayList.",
+    "qas": [
+      {
+        "id": "00014",
+        "is_impossible": false,
+        "question": "What type of arrays does Java have?",
+        "answers": [
+          {
+            "text": "fixed length",
+            "answer_start": 160
+          }
+        ]
+      },
+      {
+        "id": "00015",
+        "is_impossible": false,
+        "question": "When is the size of Java arrays defined?",
+        "answers": [
+          {
+            "text": "when you create the array",
+            "answer_start": 190
+          }
+        ]
+      },
+      {
+        "id": "00016",
+        "is_impossible": false,
+        "question": "What data structure offers dynamic resizing?",
+        "answers": [
+          {
+            "text": "ArrayList",
+            "answer_start": 310
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "context": "An ArrayList is an array that resizes itself as needed while still providing O(1) access. A typical implementation is that when the array is full, the array doubles in size. Each doubling takes O(n) time, but happens so rarely that its amortized insertion time is still O(1).",
+    "qas": [
+      {
+        "id": "00017",
+        "is_impossible": false,
+        "question": "What access time does ArrayList maintain?",
+        "answers": [
+          {
+            "text": "O(1)",
+            "answer_start": 75
+          }
+        ]
+      },
+      {
+        "id": "00018",
+        "is_impossible": false,
+        "question": "What happens when ArrayList is full?",
+        "answers": [
+          {
+            "text": "the array doubles in size",
+            "answer_start": 140
+          }
+        ]
+      },
+      {
+        "id": "00019",
+        "is_impossible": false,
+        "question": "How long does each doubling operation take?",
+        "answers": [
+          {
+            "text": "O(n) time",
+            "answer_start": 185
+          }
+        ]
+      },
+      {
+        "id": "00020",
+        "is_impossible": false,
+        "question": "What is the amortized insertion time?",
+        "answers": [
+          {
+            "text": "O(1)",
+            "answer_start": 265
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "context": "ArrayList<String> merge(String[] words, String[] more) { ArrayList<String> sentence = new ArrayList<String>(); for (String w : words) sentence.add(w); for (String w: more) sentence.add(w); return sentence; } This is an essential data structure for interviews. Be sure you are comfortable with dynamically resizable arrays/lists in whatever language you will be working with.",
+    "qas": [
+      {
+        "id": "00021",
+        "is_impossible": false,
+        "question": "What method adds elements to ArrayList?",
+        "answers": [
+          {
+            "text": "add",
+            "answer_start": 140
+          }
+        ]
+      },
+      {
+        "id": "00022",
+        "is_impossible": false,
+        "question": "What type of data structure is essential for interviews?",
+        "answers": [
+          {
+            "text": "dynamically resizable arrays",
+            "answer_start": 290
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "context": "Suppose you have an array of size N. We can work backwards to compute how many elements we copied at each capacity increase. When we increase the array to K elements, the array was previously half that size. Therefore, we needed to copy K/2 elements. The total number of copies to insert N elements is roughly N/2 + N/4 + N/8 + ... + 2 + 1, which is just less than N.",
+    "qas": [
+      {
+        "id": "00023",
+        "is_impossible": false,
+        "question": "How many elements need copying when increasing to K elements?",
+        "answers": [
+          {
+            "text": "K/2 elements",
+            "answer_start": 220
+          }
+        ]
+      },
+      {
+        "id": "00024",
+        "is_impossible": false,
+        "question": "What is the total copies needed for N elements?",
+        "answers": [
+          {
+            "text": "N/2 + N/4 + N/8 + ... + 2 + 1",
+            "answer_start": 290
+          }
+        ]
+      },
+      {
+        "id": "00025",
+        "is_impossible": false,
+        "question": "What is the sum approximately equal to?",
+        "answers": [
+          {
+            "text": "just less than N",
+            "answer_start": 340
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "context": "String joinWords(String[] words) { String sentence = \"\"; for (String w: words) { sentence = sentence + w; } return sentence; } On each concatenation, a new copy of the string is created, and the two strings are copied over, character by character. The first iteration requires us to copy x characters. The second iteration requires copying 2x characters. The third iteration requires 3x, and so on.",
+    "qas": [
+      {
+        "id": "00026",
+        "is_impossible": false,
+        "question": "What happens during each string concatenation?",
+        "answers": [
+          {
+            "text": "a new copy of the string is created",
+            "answer_start": 130
+          }
+        ]
+      },
+      {
+        "id": "00027",
+        "is_impossible": false,
+        "question": "How many characters are copied in the first iteration?",
+        "answers": [
+          {
+            "text": "x characters",
+            "answer_start": 250
+          }
+        ]
+      },
+      {
+        "id": "00028",
+        "is_impossible": false,
+        "question": "How many characters are copied in the second iteration?",
+        "answers": [
+          {
+            "text": "2x characters",
+            "answer_start": 300
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "context": "The total time therefore is O(x + 2x + ... + nx). This reduces to O(xn^2). Why is it O(xn^2)? Because 1 + 2 + ... + n equals n(n+1)/2, or O(n^2). StringBuilder can help you avoid this problem. StringBuilder simply creates a resizable array of all the strings, copying them back to a string only when necessary.",
+    "qas": [
+      {
+        "id": "00029",
+        "is_impossible": false,
+        "question": "What is the total time complexity for string concatenation?",
+        "answers": [
+          {
+            "text": "O(xn^2)",
+            "answer_start": 60
+          }
+        ]
+      },
+      {
+        "id": "00030",
+        "is_impossible": false,
+        "question": "What does 1 + 2 + ... + n equal?",
+        "answers": [
+          {
+            "text": "n(n+1)/2",
+            "answer_start": 140
+          }
+        ]
+      },
+      {
+        "id": "00031",
+        "is_impossible": false,
+        "question": "What can help avoid the O(n^2) concatenation problem?",
+        "answers": [
+          {
+            "text": "StringBuilder",
+            "answer_start": 170
+          }
+        ]
+      },
+      {
+        "id": "00032",
+        "is_impossible": false,
+        "question": "When does StringBuilder copy strings back?",
+        "answers": [
+          {
+            "text": "only when necessary",
+            "answer_start": 270
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "context": "String joinWords(String[] words) { StringBuilder sentence = new StringBuilder(); for (String w : words) { sentence.append(w); } return sentence.toString(); } A good exercise to practice strings, arrays, and general data structures is to implement your own version of StringBuilder, HashTable and ArrayList.",
+    "qas": [
+      {
+        "id": "00033",
+        "is_impossible": false,
+        "question": "What method does StringBuilder use to add strings?",
+        "answers": [
+          {
+            "text": "append",
+            "answer_start": 100
+          }
+        ]
+      },
+      {
+        "id": "00034",
+        "is_impossible": false,
+        "question": "What data structures should you practice implementing?",
+        "answers": [
+          {
+            "text": "StringBuilder, HashTable and ArrayList",
+            "answer_start": 250
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "context": "Is Unique: Implement an algorithm to determine if a string has all unique characters. What if you cannot use additional data structures? Check Permutation: Given two strings, write a method to decide if one is a permutation of the other. URLify: Write a method to replace all spaces in a string with '%20'. You may assume that the string has sufficient space at the end to hold the additional characters.",
+    "qas": [
+      {
+        "id": "00035",
+        "is_impossible": false,
+        "question": "What does the Is Unique algorithm check?",
+        "answers": [
+          {
+            "text": "if a string has all unique characters",
+            "answer_start": 55
+          }
+        ]
+      },
+      {
+        "id": "00036",
+        "is_impossible": false,
+        "question": "What does Check Permutation determine?",
+        "answers": [
+          {
+            "text": "if one is a permutation of the other",
+            "answer_start": 200
+          }
+        ]
+      },
+      {
+        "id": "00037",
+        "is_impossible": false,
+        "question": "What does URLify replace spaces with?",
+        "answers": [
+          {
+            "text": "%20",
+            "answer_start": 295
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "context": "Palindrome Permutation: Given a string, write a function to check if it is a permutation of a palindrome. A palindrome is a word or phrase that is the same forwards and backwards. A permutation is a rearrangement of letters. The palindrome does not need to be limited to just dictionary words. Example Input: Tact Coa Output: True (permutations: \"taco cat\", \"atco eta\", etc.)",
+    "qas": [
+      {
+        "id": "00038",
+        "is_impossible": false,
+        "question": "What is a palindrome?",
+        "answers": [
+          {
+            "text": "a word or phrase that is the same forwards and backwards",
+            "answer_start": 140
+          }
+        ]
+      },
+      {
+        "id": "00039",
+        "is_impossible": false,
+        "question": "What is a permutation?",
+        "answers": [
+          {
+            "text": "a rearrangement of letters",
+            "answer_start": 215
+          }
+        ]
+      },
+      {
+        "id": "00040",
+        "is_impossible": false,
+        "question": "What is the output for input 'Tact Coa'?",
+        "answers": [
+          {
+            "text": "True",
+            "answer_start": 350
+          }
+        ]
+      },
+      {
+        "id": "00041",
+        "is_impossible": false,
+        "question": "What are example permutations of 'Tact Coa'?",
+        "answers": [
+          {
+            "text": "taco cat, atco eta",
+            "answer_start": 370
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "context": "One Away: There are three types of edits that can be performed on strings: insert a character, remove a character, or replace a character. Given two strings, write a function to check if they are one edit (or zero edits) away. Examples: pale, ple -> true; pales, pale -> true; pale, bale -> true; pale, bake -> false",
+    "qas": [
+      {
+        "id": "00042",
+        "is_impossible": false,
+        "question": "What are the three types of string edits?",
+        "answers": [
+          {
+            "text": "insert a character, remove a character, or replace a character",
+            "answer_start": 75
+          }
+        ]
+      },
+      {
+        "id": "00043",
+        "is_impossible": false,
+        "question": "Are 'pale' and 'ple' one edit away?",
+        "answers": [
+          {
+            "text": "true",
+            "answer_start": 230
+          }
+        ]
+      },
+      {
+        "id": "00044",
+        "is_impossible": false,
+        "question": "Are 'pale' and 'bake' one edit away?",
+        "answers": [
+          {
+            "text": "false",
+            "answer_start": 290
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "context": "String Compression: Implement a method to perform basic string compression using the counts of repeated characters. For example, the string aabcccccaaa would become a2b1c5a3. If the compressed string would not become smaller than the original string, your method should return the original string. You can assume the string has only uppercase and lowercase letters (a - z).",
+    "qas": [
+      {
+        "id": "00045",
+        "is_impossible": false,
+        "question": "How does string compression work?",
+        "answers": [
+          {
+            "text": "using the counts of repeated characters",
+            "answer_start": 95
+          }
+        ]
+      },
+      {
+        "id": "00046",
+        "is_impossible": false,
+        "question": "What would 'aabcccccaaa' become after compression?",
+        "answers": [
+          {
+            "text": "a2b1c5a3",
+            "answer_start": 180
+          }
+        ]
+      },
+      {
+        "id": "00047",
+        "is_impossible": false,
+        "question": "When should you return the original string?",
+        "answers": [
+          {
+            "text": "If the compressed string would not become smaller than the original string",
+            "answer_start": 195
+          }
+        ]
+      },
+      {
+        "id": "00048",
+        "is_impossible": false,
+        "question": "What characters can the string contain?",
+        "answers": [
+          {
+            "text": "only uppercase and lowercase letters (a - z)",
+            "answer_start": 320
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "context": "Rotate Matrix: Given an image represented by an NxN matrix, where each pixel in the image is 4 bytes, write a method to rotate the image by 90 degrees. Can you do this in place? Zero Matrix: Write an algorithm such that if an element in an MxN matrix is 0, its entire row and column are set to 0.",
+    "qas": [
+      {
+        "id": "00049",
+        "is_impossible": false,
+        "question": "How is the image represented?",
+        "answers": [
+          {
+            "text": "NxN matrix",
+            "answer_start": 50
+          }
+        ]
+      },
+      {
+        "id": "00050",
+        "is_impossible": false,
+        "question": "How many bytes per pixel?",
+        "answers": [
+          {
+            "text": "4 bytes",
+            "answer_start": 80
+          }
+        ]
+      },
+      {
+        "id": "00051",
+        "is_impossible": false,
+        "question": "By what angle should the image be rotated?",
+        "answers": [
+          {
+            "text": "90 degrees",
+            "answer_start": 140
+          }
+        ]
+      },
+      {
+        "id": "00052",
+        "is_impossible": false,
+        "question": "What happens to row and column when element is 0?",
+        "answers": [
+          {
+            "text": "entire row and column are set to 0",
+            "answer_start": 280
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "context": "String Rotation: Assume you have a method isSubstring which checks if one word is a substring of another. Given two strings, s1 and s2, write code to check if s2 is a rotation of s1 using only one call to isSubstring. For example, 'waterbottle' is a rotation of 'erbottlewat'.",
+    "qas": [
+      {
+        "id": "00053",
+        "is_impossible": false,
+        "question": "What method checks if one word is substring of another?",
+        "answers": [
+          {
+            "text": "isSubstring",
+            "answer_start": 45
+          }
+        ]
+      },
+      {
+        "id": "00054",
+        "is_impossible": false,
+        "question": "How many calls to isSubstring are allowed?",
+        "answers": [
+          {
+            "text": "only one call",
+            "answer_start": 170
+          }
+        ]
+      },
+      {
+        "id": "00055",
+        "is_impossible": false,
+        "question": "What is 'waterbottle' a rotation of?",
+        "answers": [
+          {
+            "text": "erbottlewat",
+            "answer_start": 240
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "context": "public boolean isUnique(String str) { if (str.length() > 128) return false; boolean[] char_set = new boolean[128]; for (int i = 0; i < str.length(); i++) { int val = str.charAt(i); if (char_set[val]) { return false; } char_set[val] = true; } return true; }",
+    "qas": [
+      {
+        "id": "00056",
+        "is_impossible": false,
+        "question": "What size boolean array is used?",
+        "answers": [
+          {
+            "text": "128",
+            "answer_start": 120
+          }
+        ]
+      },
+      {
+        "id": "00057",
+        "is_impossible": false,
+        "question": "What happens if string length exceeds 128?",
+        "answers": [
+          {
+            "text": "return false",
+            "answer_start": 70
+          }
+        ]
+      },
+      {
+        "id": "00058",
+        "is_impossible": false,
+        "question": "What indicates a duplicate character?",
+        "answers": [
+          {
+            "text": "char_set[val]",
+            "answer_start": 200
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "context": "public boolean checkPermutation(String s1, String s2) { if (s1.length() != s2.length()) { return false; } int[] letters = new int[128]; for (int i = 0; i < s1.length(); i++) { letters[s1.charAt(i)]++; } for (int i = 0; i < s2.length(); i++) { letters[s2.charAt(i)]--; if (letters[s2.charAt(i)] < 0) { return false; } } return true; }",
+    "qas": [
+      {
+        "id": "00059",
+        "is_impossible": false,
+        "question": "What is the first condition checked?",
+        "answers": [
+          {
+            "text": "s1.length() != s2.length()",
+            "answer_start": 50
+          }
+        ]
+      },
+      {
+        "id": "00060",
+        "is_impossible": false,
+        "question": "What array size is used for character counting?",
+        "answers": [
+          {
+            "text": "128",
+            "answer_start": 130
+          }
+        ]
+      },
+      {
+        "id": "00061",
+        "is_impossible": false,
+        "question": "What operation is performed on letters array for s1?",
+        "answers": [
+          {
+            "text": "letters[s1.charAt(i)]++",
+            "answer_start": 180
+          }
+        ]
+      },
+      {
+        "id": "00062",
+        "is_impossible": false,
+        "question": "What indicates strings are not permutations?",
+        "answers": [
+          {
+            "text": "letters[s2.charAt(i)] < 0",
+            "answer_start": 280
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "context": "public void urlify(char[] str, int trueLength) { int spaceCount = 0; for (int i = 0; i < trueLength; i++) { if (str[i] == ' ') { spaceCount++; } } int index = trueLength + spaceCount * 2; str[index] = '\\0'; for (int i = trueLength - 1; i >= 0; i--) { if (str[i] == ' ') { str[index - 1] = '0'; str[index - 2] = '2'; str[index - 3] = '%'; index -= 3; } else { str[index - 1] = str[i]; index--; } } }",
+    "qas": [
+      {
+        "id": "00063",
+        "is_impossible": false,
+        "question": "What does urlify count first?",
+        "answers": [
+          {
+            "text": "spaceCount",
+            "answer_start": 50
+          }
+        ]
+      },
+      {
+        "id": "00064",
+        "is_impossible": false,
+        "question": "How is the new index calculated?",
+        "answers": [
+          {
+            "text": "trueLength + spaceCount * 2",
+            "answer_start": 150
+          }
+        ]
+      },
+      {
+        "id": "00065",
+        "is_impossible": false,
+        "question": "What replaces each space character?",
+        "answers": [
+          {
+            "text": "%20",
+            "answer_start": 280
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "context": "public boolean isPermutationOfPalindrome(String phrase) { int[] table = getCharFrequency(phrase); return checkMaxOneOdd(table); } int[] getCharFrequency(String phrase) { int[] table = new int[Character.getNumericValue('z') - Character.getNumericValue('a') + 1]; for (char c : phrase.toCharArray()) { int x = getCharNumber(c); if (x != -1) { table[x]++; } } return table; }",
+    "qas": [
+      {
+        "id": "00066",
+        "is_impossible": false,
+        "question": "What does isPermutationOfPalindrome return?",
+        "answers": [
+          {
+            "text": "checkMaxOneOdd(table)",
+            "answer_start": 90
+          }
+        ]
+      },
+      {
+        "id": "00067",
+        "is_impossible": false,
+        "question": "What does getCharFrequency return?",
+        "answers": [
+          {
+            "text": "table",
+            "answer_start": 380
+          }
+        ]
+      },
+      {
+        "id": "00068",
+        "is_impossible": false,
+        "question": "What operation is performed on table[x]?",
+        "answers": [
+          {
+            "text": "table[x]++",
+            "answer_start": 350
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "context": "public boolean oneEditAway(String first, String second) { if (first.length() == second.length()) { return oneEditReplace(first, second); } else if (first.length() + 1 == second.length()) { return oneEditInsert(first, second); } else if (first.length() - 1 == second.length()) { return oneEditInsert(second, first); } return false; }",
+    "qas": [
+      {
+        "id": "00069",
+        "is_impossible": false,
+        "question": "What method is called when strings have equal length?",
+        "answers": [
+          {
+            "text": "oneEditReplace",
+            "answer_start": 90
+          }
+        ]
+      },
+      {
+        "id": "00070",
+        "is_impossible": false,
+        "question": "What method is called when first string is one character longer?",
+        "answers": [
+          {
+            "text": "oneEditInsert",
+            "answer_start": 240
+          }
+        ]
+      },
+      {
+        "id": "00071",
+        "is_impossible": false,
+        "question": "What is returned when length difference is more than 1?",
+        "answers": [
+          {
+            "text": "false",
+            "answer_start": 320
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "context": "String compress(String str) { StringBuilder compressed = new StringBuilder(); int countConsecutive = 0; for (int i = 0; i < str.length(); i++) { countConsecutive++; if (i + 1 >= str.length() || str.charAt(i) != str.charAt(i + 1)) { compressed.append(str.charAt(i)); compressed.append(countConsecutive); countConsecutive = 0; } } return compressed.length() < str.length() ? compressed.toString() : str; }",
+    "qas": [
+      {
+        "id": "00072",
+        "is_impossible": false,
+        "question": "What is used to build the compressed string?",
+        "answers": [
+          {
+            "text": "StringBuilder",
+            "answer_start": 40
+          }
+        ]
+      },
+      {
+        "id": "00073",
+        "is_impossible": false,
+        "question": "What gets appended after each character?",
+        "answers": [
+          {
+            "text": "countConsecutive",
+            "answer_start": 220
+          }
+        ]
+      },
+      {
+        "id": "00074",
+        "is_impossible": false,
+        "question": "When is the original string returned?",
+        "answers": [
+          {
+            "text": "compressed.length() < str.length()",
+            "answer_start": 290
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "context": "public boolean rotateMatrix(int[][] matrix) { if (matrix.length == 0 || matrix.length != matrix[0].length) return false; int n = matrix.length; for (int layer = 0; layer < n / 2; layer++) { int first = layer; int last = n - 1 - layer; for (int i = first; i < last; i++) { int offset = i - first; int top = matrix[first][i]; matrix[first][i] = matrix[last-offset][first]; matrix[last-offset][first] = matrix[last][last-offset]; matrix[last][last-offset] = matrix[i][last]; matrix[i][last] = top; } } return true; }",
+    "qas": [
+      {
+        "id": "00075",
+        "is_impossible": false,
+        "question": "What condition must matrix satisfy?",
+        "answers": [
+          {
+            "text": "matrix.length != matrix[0].length",
+            "answer_start": 70
+          }
+        ]
+      },
+      {
+        "id": "00076",
+        "is_impossible": false,
+        "question": "How many layers does the algorithm process?",
+        "answers": [
+          {
+            "text": "n / 2",
+            "answer_start": 160
+          }
+        ]
+      },
+      {
+        "id": "00077",
+        "is_impossible": false,
+        "question": "What variable stores the top element?",
+        "answers": [
+          {
+            "text": "top",
+            "answer_start": 280
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "context": "public void setZeros(int[][] matrix) { boolean[] row = new boolean[matrix.length]; boolean[] column = new boolean[matrix[0].length]; for (int i = 0; i < matrix.length; i++) { for (int j = 0; j < matrix[0].length; j++) { if (matrix[i][j] == 0) { row[i] = true; column[j] = true; } } } for (int i = 0; i < row.length; i++) { for (int j = 0; j < column.length; j++) { if (row[i] || column[j]) { matrix[i][j] = 0; } } } }",
+    "qas": [
+      {
+        "id": "00078",
+        "is_impossible": false,
+        "question": "What arrays track zero positions?",
+        "answers": [
+          {
+            "text": "row and column",
+            "answer_start": 60
+          }
+        ]
+      },
+      {
+        "id": "00079",
+        "is_impossible": false,
+        "question": "What condition sets row[i] to true?",
+        "answers": [
+          {
+            "text": "matrix[i][j] == 0",
+            "answer_start": 200
+          }
+        ]
+      },
+      {
+        "id": "00080",
+        "is_impossible": false,
+        "question": "When is matrix[i][j] set to 0?",
+        "answers": [
+          {
+            "text": "if (row[i] || column[j])",
+            "answer_start": 350
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "context": "public boolean isRotation(String s1, String s2) { int len = s1.length(); if (len == s2.length() && len > 0) { String s1s1 = s1 + s1; return isSubstring(s1s1, s2); } return false; } The key insight is that if s2 is a rotation of s1, then s2 will always be a substring of s1s1.",
+    "qas": [
+      {
+        "id": "00081",
+        "is_impossible": false,
+        "question": "What must be equal for rotation check?",
+        "answers": [
+          {
+            "text": "len == s2.length()",
+            "answer_start": 80
+          }
+        ]
+      },
+      {
+        "id": "00082",
+        "is_impossible": false,
+        "question": "What string is created for rotation check?",
+        "answers": [
+          {
+            "text": "s1 + s1",
+            "answer_start": 140
+          }
+        ]
+      },
+      {
+        "id": "00083",
+        "is_impossible": false,
+        "question": "What is the key insight for string rotation?",
+        "answers": [
+          {
+            "text": "if s2 is a rotation of s1, then s2 will always be a substring of s1s1",
+            "answer_start": 220
+          }
+        ]
+      }
+    ]
+  }
+]
